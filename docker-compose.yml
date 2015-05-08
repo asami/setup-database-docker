@@ -1,0 +1,27 @@
+app:
+  build: .
+  links:
+    - mysql:db
+    - redis
+  volumes:
+    - setup.d:/opt/setup.d
+  environment:
+    WAIT_CONTAINER_KEY: mysql-java-embulk-docker
+    DB_SERVER_USER: baseball
+    DB_SERVER_PASSWORD: baseball
+    DB_SERVER_DATABASE: baseball
+mysql:
+  image: asami/mysql-java-embulk-docker
+  links:
+    - redis
+  ports:
+    - ":3306"
+  environment:
+    MYSQL_USER: baseball
+    MYSQL_PASSWORD: baseball
+    MYSQL_ROOT_PASSWORD: baseball
+    MYSQL_DATABASE: baseball
+redis:
+  image: redis
+  ports:
+    - ":6379"

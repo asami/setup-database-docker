@@ -1,0 +1,44 @@
+in:
+  type: file
+  path_prefix: Batting.csv
+  parser:
+    charset: UTF-8
+    newline: CRLF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: ''
+    skip_header_lines: 1
+    columns:
+    - {name: playerID, type: string}
+    - {name: yearID, type: long}
+    - {name: stint, type: long}
+    - {name: teamID, type: string}
+    - {name: lgID, type: string}
+    - {name: G, type: long}
+    - {name: AB, type: long}
+    - {name: R, type: long}
+    - {name: H, type: long}
+    - {name: 2B, type: long}
+    - {name: 3B, type: long}
+    - {name: HR, type: long}
+    - {name: RBI, type: long}
+    - {name: SB, type: long}
+    - {name: CS, type: long}
+    - {name: BB, type: long}
+    - {name: SO, type: long}
+    - {name: IBB, type: long}
+    - {name: HBP, type: long}
+    - {name: SH, type: long}
+    - {name: SF, type: long}
+    - {name: GIDP, type: long}
+exec: {}
+out:
+  type: {{DB_SERVER_DBMS}}
+  host: {{DB_SERVER_HOST}}
+  port: {{DB_SERVER_PORT}}
+  database: {{DB_SERVER_DATABASE}}
+  user: {{DB_SERVER_USER}}
+  password: {{DB_SERVER_PASSWORD}}
+  table: batting
+  mode: insert
