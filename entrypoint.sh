@@ -1,6 +1,8 @@
 #!/bin/bash
 
-set -x
+if [ $DEBUG'' = "true" ]; then
+    set -x
+fi
 
 set -e
 
@@ -52,4 +54,8 @@ done
 
 if [ -n "$REDIS_SERVER_HOST" ]; then
     redis-cli -h $REDIS_SERVER_HOST -p $REDIS_SERVER_PORT SET $DB_WAIT_CONTAINER_KEY up
+fi
+
+if [ $STANDALONE'' != "true" ]; then
+  sleep infinity
 fi
